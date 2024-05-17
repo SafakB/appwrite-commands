@@ -4,6 +4,36 @@ Includes helper commands for Appwrite and Docker
 
 ## General Commands
 
+**Install Appwrite** (macOS & Linux)
+
+```sh
+docker run -it --rm \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    --volume "$(pwd)"/appwrite:/usr/src/code/appwrite:rw \
+    --entrypoint="install" \
+    appwrite/appwrite:1.5.5
+```
+
+**Install Appwrite** (Windows CMD)
+
+```sh
+docker run -it --rm ^
+    --volume //var/run/docker.sock:/var/run/docker.sock ^
+    --volume "%cd%"/appwrite:/usr/src/code/appwrite:rw ^
+    --entrypoint="install" ^
+    appwrite/appwrite:1.5.5
+```
+
+**Install Appwrite** (Windows Powershell)
+
+```sh
+docker run -it --rm `
+    --volume /var/run/docker.sock:/var/run/docker.sock `
+    --volume ${pwd}/appwrite:/usr/src/code/appwrite:rw `
+    --entrypoint="install" `
+    appwrite/appwrite:1.5.5
+```
+
 **Run Compose App**
 
 ```sh
@@ -78,6 +108,10 @@ docker network rm <network_name>
 ```sh
 docker stop $(docker ps -aqf "name=appwrite")
 docker rm $(docker ps -aqf "name=appwrite")
+docker stop runtime
+docker rm runtime
+docker stop gateway
+docker rm gateway
 ```
 
 **Delete Images**
@@ -90,6 +124,12 @@ docker rmi $(docker images -q 'appwrite/*')
 
 ```sh
 docker volume rm $(docker volume ls -qf "name=appwrite")
+```
+
+**Down all runnging containers** (if u need)
+
+```sh
+docker-compose down
 ```
 
 **Delete Network**
