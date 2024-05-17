@@ -53,9 +53,10 @@ Includes helper commands for Appwrite and Docker
 
 **Stop and Delete Containers**
 
-`docker stop $(docker ps -aqf "name=appwrite")`
-
-`docker rm $(docker ps -aqf "name=appwrite")`
+```
+docker stop $(docker ps -aqf "name=appwrite")
+docker rm $(docker ps -aqf "name=appwrite")
+```
 
 **Delete Images**
 
