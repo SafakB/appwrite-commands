@@ -71,7 +71,7 @@ docker network rm <network_name>
 ```
 
 
-## Delete Appwrite
+## Delete All Appwrite 
 
 **Stop and Delete Containers**
 
