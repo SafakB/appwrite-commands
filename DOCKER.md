@@ -31,7 +31,7 @@ docker ps
 **Inspect Container**
 
 ```sh
-docker inspect appwrite
+docker inspect <container_id/name>
 ```
 
 **Run Container**
