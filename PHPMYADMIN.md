@@ -39,25 +39,9 @@ docker-compose up -d
 
 File : `docker-compose.yml`
 
-Find : 
-```
-- traefik.http.routers.appwrite_api_http.rule=PathPrefix(`/`)
-```
-Replace : 
-```
-- traefik.http.routers.appwrite_api_http.rule=PathPrefix(`/`) && !PathPrefix(`/phpmyadmin`)
-```
-
-Find : 
-```
-- traefik.http.routers.appwrite_api_https.rule=PathPrefix(`/`)
-```
-Replace : 
-```
-- traefik.http.routers.appwrite_api_https.rule=PathPrefix(`/`) && !PathPrefix(`/phpmyadmin`)
-```
-
 ### Add for routed
+
+Note : `Add this before the Appwrite block`
 
 ```yml
 phpmyadmin:
