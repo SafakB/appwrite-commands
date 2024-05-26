@@ -27,7 +27,7 @@ RESTORE_DIR=${backup_dirs[$dir_index]}
 
 echo -e "${BLUE}Restoring from backup directory: $RESTORE_DIR${NC}"
 
-required_files=("appwrite_backup.tar" "mariadb_backup.sql" "redis_backup.rdb")
+required_files=("appwrite_backup.tar" "mariadb_backup.sql" "redis_backup.rdb" "appwrite_builds_backup.tar")
 for file in "${required_files[@]}"; do
   if [ ! -f "$RESTORE_DIR/$file" ]; then
     echo -e "${RED}Error: Required file '$file' not found in backup directory '$RESTORE_DIR'.${NC}"
@@ -37,6 +37,9 @@ done
 
 docker run --rm --volumes-from appwrite -v "$(pwd)/$RESTORE_DIR:/restore" busybox tar xvf /restore/appwrite_backup.tar -C /
 echo -e "${BLUE}Appwrite volumes restored.${NC}"
+
+docker run --rm -v appwrite_appwrite-builds:/data -v "$(pwd)/$RESTORE_DIR:/restore" busybox tar xvf /restore/appwrite_builds_backup.tar -C /data
+echo -e "${BLUE}Appwrite builds volume restored.${NC}"
 
 echo -e "${BLUE}Starting MariaDB database restore...${NC}"
 docker exec -i appwrite-mariadb mysql -u user -ppassword < "${RESTORE_DIR}/mariadb_backup.sql"

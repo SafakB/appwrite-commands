@@ -26,6 +26,9 @@ echo -e "${BLUE}Redis backup completed successfully!${NC}"
 docker run --rm --volumes-from appwrite -v "$(pwd)/${BACKUP_DIR}:/backup" busybox tar cvf /backup/appwrite_backup.tar /storage
 echo -e "${BLUE}Appwrite volumes backup completed successfully!${NC}"
 
+docker run --rm -v appwrite_appwrite-builds:/data -v "$(pwd)/${BACKUP_DIR}:/backup" busybox tar cvf /backup/appwrite_builds_backup.tar -C /data .
+echo -e "${BLUE}Appwrite builds volume backup completed successfully!${NC}"
+
 cp .env docker-compose.yml "${BACKUP_DIR}"
 echo -e "${BLUE}Configuration files backup completed successfully!${NC}"
 
