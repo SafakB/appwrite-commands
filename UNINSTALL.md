@@ -10,8 +10,8 @@ Includes helper commands for fully uninstall your server
 ```sh
 docker stop $(docker ps -aqf "name=appwrite")
 docker rm $(docker ps -aqf "name=appwrite")
-docker stop runtime
-docker rm runtime
+docker stop openruntimes-executor
+docker rm openruntimes-executor
 docker stop gateway
 docker rm gateway
 ```
