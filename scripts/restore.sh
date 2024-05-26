@@ -53,5 +53,5 @@ echo -e "${GREEN}Redis server started.${NC}"
 
 echo -e "${GREEN}Restore completed.${NC}"
 
-docker compose compose down -v
-docker compose compose up -d
+docker compose down
+docker compose up -d
