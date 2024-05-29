@@ -32,6 +32,8 @@ echo -e "${BLUE}Appwrite builds volume backup completed successfully!${NC}"
 cp .env docker-compose.yml "${BACKUP_DIR}"
 echo -e "${BLUE}Configuration files backup completed successfully!${NC}"
 
+find "${BACKUP_DIR}" -type f -exec chmod 644 {} \;
+echo -e "${BLUE}Permissions set to 644 for all files!${NC}"
 
 read -p "Do you want to compress the backup files? (y/n): " COMPRESS
 if [ "$COMPRESS" != "y" ]; then
