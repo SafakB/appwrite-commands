@@ -58,15 +58,16 @@ phpmyadmin:
       - traefik.enable=true
       - traefik.docker.network=appwrite
       - traefik.constraint-label-stack=appwrite
-      - traefik.http.routers.phpmyadmin.rule=Host(`example.com`) && PathPrefix(`/phpmyadmin`)
+      - traefik.http.routers.phpmyadmin.rule=PathPrefix(`/phpmyadmin`)
       - traefik.http.middlewares.phpmyadmin-stripprefix.stripprefix.prefixes=/phpmyadmin
+      - traefik.http.middlewares.phpmyadmin-whitelist.ipwhitelist.sourcerange=10.0.0.1/32
       - traefik.http.routers.phpmyadmin.middlewares=phpmyadmin-stripprefix
       - traefik.http.services.phpmyadmin.loadbalancer.server.port=80
       - traefik.frontend.rule=PathPrefix:/phpmyadmin
       - traefik.frontend.rewrite.target=/phpmyadmin/
       #https
-      - traefik.http.routers.phpmyadmin_https.rule=Host(`example.com`) && PathPrefix(`/phpmyadmin`)
-      - traefik.http.routers.phpmyadmin_https.middlewares=phpmyadmin-stripprefix
+      - traefik.http.routers.phpmyadmin_https.rule=PathPrefix(`/phpmyadmin`)
+      - traefik.http.routers.phpmyadmin_https.middlewares=phpmyadmin-stripprefix,phpmyadmin-whitelist
       - traefik.http.routers.phpmyadmin_https.tls=true
 ```
 
